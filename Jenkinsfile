@@ -6,13 +6,7 @@ pipeline {
         cron('H */8 * * *') //regular builds
         pollSCM('* * * * *') //polling for changes, here once a minute
     }
-    node {
-  	jdk =	tool name: 'JDK'
-  	env.JAVA_HOME = "${jdk}"
-  	echo "jdk installation path is: ${jdk}"
-  	sh "${jdk}/bin/java -version"
-  	sh '$JAVA_HOME/bin/java -version'
-   }
+    
     stages {
         stage('Checkout') {
             steps { //Checking out the repo
